@@ -1,0 +1,22 @@
+.logo {
+    width:100px;
+}
+.nav {
+    padding-bottom: 20px;
+}
+.nav a {
+    margin:20px;
+}
+.img {
+    width:200px;
+}
+div { padding: 10px; background-color: lightskyblue; }
+div div { padding: 10px; background-color: white;}
+div div div { background-color: blanchedalmond; text-align: center; }
+header div, header nav { padding: 10px; background-color: white; text-align: center; }
+footer { background-color: blanchedalmond; }
+body { font-family: "Arial", Times, serif; }
+a { background-color: gray; color: white; padding: 5px; }
+a:hover { background-color: white; color: gray; padding: 5px; transition: 0.2s ease; }
+img { opacity: 0.5; padding: 10px; background-color: silver; }
+img:hover { opacity: 1.0; background-color: navy; transition: 0.5s ease; }
