@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <p id="suma"></p>
+  <p id="min"></p>
+  <p id="max"></p>
+  <script>
+    let tab = [5, 7, 21, 11, 9, 19, 13];
+    let suma = 0;
+    let min = tab[0], max = tab[0];
+    for(let i = 0; i < tab.length; i++) {
+      suma += tab[i];
+      if(tab[i] < min) {min = tab[i]}
+      if(tab[i] > max) {max = tab[i]}
+    }
+    document.querySelector("#suma").innerHTML = "Suma: " + suma;
+    document.querySelector("#min").innerHTML = "Min: " + min;
+    document.querySelector("#max").innerHTML = "Max: " + max;
+  </script>
+</body>
+</html>

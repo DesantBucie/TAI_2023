@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<p>Liczba 1 <input onkeyup="lastUsed()" id="liczba1"></p>
+<p>Liczba 2 <input onkeyup="lastUsed()" id="liczba2"></p>
+<p id="wynik">Wynik: </p>
+<button onclick="dodaj()">Dodaj</button>
+<button onclick="odejmij()">Odejmij</button>
+<button onclick="mnozenie()">Pomnóż</button>
+<button onclick="dzielenie()">Podziel</button>
+<script>
+    let lastUsed
+    function getNumbers(){
+        let l1 = parseFloat(document.querySelector("#liczba1").value)
+        let l2 = parseFloat(document.querySelector("#liczba2").value)
+
+        return [l1, l2];
+    }
+    function dodaj(){
+        let [l1, l2] = getNumbers();
+        document.querySelector("#wynik").innerHTML = "Wynik: " + (l1 + l2)
+        lastUsed = dodaj
+    }
+    function odejmij(){
+        let [l1, l2] = getNumbers();
+        document.querySelector("#wynik").innerHTML = "Wynik: " + (l1 - l2)
+        lastUsed = odejmij;
+    }
+    function mnozenie(){
+        let [l1, l2] = getNumbers();
+        document.querySelector("#wynik").innerHTML = "Wynik: " + (l1 * l2)
+        lastUsed = mnozenie();
+    }
+    function dzielenie(){
+        let [l1, l2] = getNumbers();
+        document.querySelector("#wynik").innerHTML = "Wynik: " + (l1 / l2)
+        lastUsed = dzielenie();
+    }
+</script>
+</body>
+</html>
