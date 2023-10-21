@@ -1,10 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+        .rect {
+            width:50px;
+            height:50px;
+            line-height: 50px;
+            margin:10px;
+            display:inline-block;
+            text-align: center;
+            margin-top:auto;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+
 </head>
 <body>
+<button onclick="rzut()">Rzut!</button>
+<div id="kosci">
 
+</div>
+<span id="info">Wymienione: </span>
+<script>
+    let wymienione
+    function replace(e){
+
+        let kosci = document.querySelector("#kosci")
+        kosci.removeChild(e.target)
+        let el = document.createElement("div")
+        el.classList.add("rect")
+
+        el.appendChild(document.createTextNode(Math.floor((Math.random() * 6) + 1).toString()))
+        kosci.appendChild(el)
+        wymienione++
+    }
+    function rzut() {
+        let kosci = document.querySelector("#kosci")
+        kosci.innerHTML = "";
+        for(let i = 0; i < 5; i++) {
+            let el = document.createElement("div")
+            el.classList.add("rect")
+            el.classList.add(i)
+            el.onclick = replace
+            //el.style.background = random_bg_color();
+            el.appendChild(document.createTextNode(Math.floor((Math.random() * 6) + 1).toString()))
+            kosci.appendChild(el)
+
+        }
+        if(wymienione === undefined){
+            wymienione = 0
+        }
+        else {
+            let txt = document.createTextNode(wymienione +", ");
+            document.querySelector("#info").appendChild(txt);
+            wymienione = 0
+        }
+    }
+</script>
 </body>
 </html>
