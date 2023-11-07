@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table id="dane">
+  <tr>
+    <th>Imie i nazwisko</th>
+    <th>Pensja</th>
+    <th>Premia</th>
+  </tr>
+</table>
+<script>
+  class Osoba {
+    constructor(imie, nazwisko, rokurodzenia) {
+      this.imie = imie
+      this.nazwisko = nazwisko
+      this.rokurodzenia = rokurodzenia
+    }
+    wypiszInformacje() {
+      console.log(`imie: ${this.imie}\nnazwisko: ${this.nazwisko}\nrok urodzenia: ${this.rokurodzenia}`)
+    }
+
+  }
+  class Pracownik extends Osoba {
+    constructor(imie, nazwisko, rokurodzenia, pensja, premia) {
+      super(imie, nazwisko, rokurodzenia);
+      this.pensja = pensja
+      this.premia = premia
+    }
+    wypiszInformacje() {
+      super.wypiszInformacje()
+      console.log(`pensja: ${this.pensja}\npremia: ${this.premia}`)
+    }
+    utworzTabele() {
+      let tr = document.createElement('tr')
+      let td1 = document.createElement('td')
+      td1.appendChild(document.createTextNode(this.imie + ' ' + this.nazwisko.substring(0,1)))
+      let td2 = document.createElement('td')
+      td2.appendChild(document.createTextNode(this.pensja))
+      let td3 = document.createElement('td')
+      td3.appendChild(document.createTextNode(this.premia))
+      tr.appendChild(td1)
+      tr.appendChild(td2)
+      tr.appendChild(td3)
+      return tr;
+    }
+  }
+
+  let osoba1 = new Osoba("Kasia", "Kowalska", 2002)
+  let osoba2 = new Osoba("Mateusz", "Kowalski", 1992)
+  let osoba3 = new Osoba("Tadeusz", "Nowak", 1970)
+  osoba1.wypiszInformacje(); osoba2.wypiszInformacje(); osoba3.wypiszInformacje();
+
+  let pracownik1 = new Pracownik("Kasia", "Kowalska", 2002, 3000, 500)
+  let pracownik2 = new Pracownik("Mateusz", "Kowalski", 1992, 6000, 500)
+  let pracownik3 = new Pracownik("Tadeusz", "Nowak", 1970, 8000, 0)
+
+  let tab = document.getElementById('dane')
+  tab.appendChild(pracownik1.utworzTabele())
+  tab.appendChild(pracownik2.utworzTabele())
+  tab.appendChild(pracownik3.utworzTabele())
+
+</script>
+</body>
+</html>
