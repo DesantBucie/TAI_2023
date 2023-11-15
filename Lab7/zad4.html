@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="p5.min.js"></script>
+</head>
+<body>
+<main></main>
+<script>
+  function setup() {
+    createCanvas(640, 480, WEBGL);
+  }
+  let kat = 0.0; // obiekt będzie animowany
+  let distFromCursor = []
+  function draw() {
+    background(200);
+    for(let i = -200; i <= 200; i+=100){
+      for(let j = -200; j <= 200; j+=100) {
+        push()
+        translate(i, j, 0)
+        rotateX(kat)
+        if (i == 0 && j == 0) {
+          rotateZ(kat);
+        }
+        scale(sqrt(Math.pow(i - (mouseX - 240),2) + Math.pow(j - (mouseY - 320),2))/500)
+        fill(color(mouseX - i, mouseY - i, mouseX - j))
+        sphere(50);
+        pop()
+      }
+    }
+    kat += 0.01; // zwiększenie kąta obrotu
+    orbitControl();
+  }
+</script>
+</body>
+</html>
