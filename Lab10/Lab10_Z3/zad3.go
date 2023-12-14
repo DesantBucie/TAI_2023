@@ -1,20 +1,50 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
 	"math"
+	"os"
+	"strconv"
+	"strings"
 )
 
 type car struct {
 	mpg          float64
-	cylinders    int32
+	cylinders    int
 	displacement float64
 	horsepower   float64
 	weight       float64
 	acceleration float64
-	year         int32
-	origin       int32
+	year         int
+	origin       int
 	name         string
+}
+
+func loadCars() []*car {
+	cars := []*car{}
+	file, err := os.Open("cars.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := strings.Split(scanner.Text(), "\t")
+		c := car{}
+		c.mpg, _ = strconv.ParseFloat(line[0], 64)
+		c.cylinders, _ = strconv.Atoi(line[1])
+		c.displacement, _ = strconv.ParseFloat(line[2], 64)
+		c.horsepower, _ = strconv.ParseFloat(line[3], 64)
+		c.weight, _ = strconv.ParseFloat(line[4], 64)
+		c.acceleration, _ = strconv.ParseFloat(line[5], 64)
+		c.year, _ = strconv.Atoi(line[6])
+		c.origin, _ = strconv.Atoi(line[7])
+		c.name = line[8]
+		cars = append(cars, &c)
+	}
+	return cars
 }
 
 // funkcja porównująca obiekty przekazane przez parametry
